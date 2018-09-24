@@ -14,6 +14,7 @@ import os
 
 
 from oscar.defaults import *
+from oscar import get_core_apps
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OSCAR_SHOP_NAME='Fantasia'
@@ -32,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-from oscar import get_core_apps
+
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -166,3 +167,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+####Oscar Settings
+
