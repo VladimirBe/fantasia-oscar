@@ -17,6 +17,8 @@ from oscar.defaults import *
 from oscar import get_core_apps
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
 OSCAR_SHOP_NAME='Fantasia'
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +28,7 @@ OSCAR_SHOP_NAME='Fantasia'
 from fantasia.key import SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -143,9 +145,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ro-RO'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Bucharest'
 
 USE_I18N = True
 
@@ -161,7 +163,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 '/home/testv/fantasia/static/oscar/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 
@@ -169,4 +171,30 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ####Oscar Settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_SUBJECT_PREFIX = '[Fantasia-shop] '
+
+OSCAR_FROM_EMAIL='admin@fantasia.com'
+#OSCAR_SHOP_TAGLINE='Magazin hainute copii'
+
+OSCAR_INITIAL_ORDER_STATUS = 'Pending'
+OSCAR_INITIAL_LINE_STATUS = 'Pending'
+OSCAR_ORDER_STATUS_PIPELINE = {
+    'Pending': ('Being processed', 'Cancelled',),
+    'Being processed': ('Processed', 'Cancelled',),
+    'Cancelled': (),
+}
+
+#OSCAR_USE_LESS = True
+OSCAR_DEFAULT_CURRENCY="RON "
+
+
+gettext_noop = lambda s: s
+LANGUAGES = (
+
+    ('en-us', gettext_noop('English')),
+    ('ro', gettext_noop('Romanian')),
+
+)
 
